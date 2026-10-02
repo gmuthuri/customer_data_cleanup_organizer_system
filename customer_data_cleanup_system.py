@@ -26,6 +26,7 @@ def sort_customers(customers, sort_criterion):
     elif sort_criterion == "orders":
         return sorted(customers, key=lambda customer: customer["orders"], reverse=True)
 
+#funtion to filter by city option
 def filter_customers(customers, filter_criterion):
     filtered_customer = []
     for customer in customers:
@@ -33,6 +34,25 @@ def filter_customers(customers, filter_criterion):
             filtered_customer.append(customer)
     return filtered_customer
 
+#function to give summary
+def generate_summary(customers):
+    total_orders = 0
+    customers_per_city = {}
+
+    unique_customers = remove_duplicates(customers)
+
+    for customer in customers:
+        city = customer["city"]
+
+        if city in customers_per_city:
+            customers_per_city[city] = customers_per_city[city] + 1
+        else:
+            customers_per_city[city] = 1
+
+        total_orders = total_orders + customer["orders"]
+
+    return len(customers), len(unique_customers), total_orders, customers_per_city
+    
 customers = [
     {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
     {"name": "Mary Wanjiku", "city": "Meru", "orders": 8},
@@ -68,3 +88,6 @@ print(sort_customers(customers, "orders"))
 print(f"{ '+' * 50}")
 print("FILTER BY CITY")
 print(filter_customers(customers, "Nairo"))
+
+print(f"{ '+' * 50}")
+print(generate_summary(customers))
