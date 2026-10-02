@@ -1,0 +1,59 @@
+#function to remove duplicate from list
+def remove_duplicates(customers):
+    unique_customer = []
+    set_name = set()
+
+    for customer in customers:
+        if customer["name"] in set_name:
+            continue
+        else:
+            unique_customer.append(customer)
+            set_name.add(customer["name"])
+
+    return unique_customer
+
+#function to search from customer list
+def search_customer(customers, customer_name):
+    for customer in customers:
+        if customer["name"] == customer_name:
+            return customer
+    return None
+
+#function to sort by name and order
+def sort_customers(customers, sort_criterion):
+    if sort_criterion == "name":
+        return sorted(customers, key=lambda customer: customer["name"])
+    elif sort_criterion == "orders":
+        return sorted(customers, key=lambda customer: customer["orders"], reverse="true")
+    
+customers = [
+    {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
+    {"name": "Mary Wanjiku", "city": "Meru", "orders": 8},
+    {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
+    {"name": "GPeter Kariuki", "city": "Nairobi", "orders": 3},
+    {"name": "Mary Wanjiku", "city": "Meru", "orders": 8}
+]
+
+#search output
+print("SEARCH BY NAME")
+result = search_customer(customers, "Peter Kariuki")
+if result is None:
+    print("Customer is not found")
+else:
+    print("Name:", result["name"])
+    print("City:", result["city"])
+    print("Orders:", result["orders"])
+print(f"{ '+' * 50}")
+
+#cleaned list with no duplicate
+print("CUSTOMER LIST WITH NO DUPLICATE")
+cleaned_customers = remove_duplicates(customers)
+
+for customer in cleaned_customers:
+    print(customer)
+print(f"{ '+' * 50}")
+
+print("SORTED DATA")
+print(sort_customers(customers, "name"))
+print(f"{ '+' * 50}")
+print(sort_customers(customers, "orders"))
