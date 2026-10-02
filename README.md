@@ -1,114 +1,74 @@
-# Customer Data Cleanup & Organizer
-
-A Core Python portfolio project developed for a fictional small wholesale and retail business, **GreenMart Supplies**.
-
-The project demonstrates how Python can be used to clean, organize, search, filter, sort, and summarize customer records stored as a list of dictionaries.
+# GreenMart Customer Data Cleanup & Organizer
 
 ## Project Overview
 
-GreenMart Supplies maintains customer information in a simple Python data structure. The business needs a small utility that can help staff organize customer records and quickly retrieve useful information.
+The **GreenMart Customer Data Cleanup & Organizer** is a Core Python application designed to help a small business organize, search, sort, filter, and summarize customer records.
 
-The system provides functions for:
+The project simulates a freelance client request from **GreenMart Supplies**, a fictional business that needs a simple tool for managing customer data without using a database or external libraries.
 
-* Displaying customer records
-* Searching for a customer
-* Sorting customers by name
-* Sorting customers by number of orders
-* Filtering customers by city
-* Removing duplicate customer records
-* Generating a summary of the customer data
+The application demonstrates how Python collections, functions, loops, conditionals, searching, sorting, filtering, and basic data-processing techniques can be combined to build a practical business application.
 
-This project is intentionally built using **Core Python** to demonstrate fundamental programming skills before introducing external libraries, databases, or APIs.
+---
 
-## Client Requirements
+## Client Problem
 
-The system should work with customer records containing:
+GreenMart Supplies has customer records stored as Python data structures. Some records may be duplicated, and the business needs a simple way to:
 
-* Customer name
-* City
-* Number of orders
+* View customer records
+* Search for individual customers
+* Sort customers
+* Filter customers by city
+* Remove duplicate customer records
+* Generate a summary of the customer data
 
-Example:
+The goal was to create a lightweight command-line solution using **Core Python only**.
 
-```python
-customers = [
-    {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
-    {"name": "Mary Wanjiku", "city": "Meru", "orders": 8},
-    {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
-    {"name": "Peter Kariuki", "city": "Nairobi", "orders": 3},
-    {"name": "Mary Wanjiku", "city": "Meru", "orders": 8}
-]
-```
+---
 
 ## Features
 
-### 1. Display Customers
+The application provides the following menu options:
 
-Displays customer records in a readable format.
+1. **Display Customers**
 
-```python
-display_customers(customers)
-```
+   * Displays all customer records.
 
-### 2. Search Customers
+2. **Search Customer**
 
-Searches for a customer by name and returns the matching customer record.
+   * Searches for a customer by name.
+   * Returns the customer's name, city, and number of orders.
+   * Handles customers who are not found.
 
-```python
-search_customer(customers, customer_name)
-```
+3. **Sort Customers**
 
-If no customer is found, the function returns `None`.
+   * Sorts customers alphabetically by name.
+   * Sorts customers by orders from highest to lowest.
 
-### 3. Sort Customers
+4. **Filter Customers**
 
-Customers can be sorted by:
+   * Filters customer records by city.
+   * Handles cities with no matching customers.
 
-* Name — A to Z
-* Number of orders — highest to lowest
+5. **Remove Duplicates**
 
-```python
-sort_customers(customers, sort_criterion)
-```
+   * Identifies duplicate customers using their names.
+   * Keeps the first occurrence of each customer.
+   * Displays the original and unique record counts.
 
-### 4. Filter Customers
+6. **Generate Summary**
 
-Filters customers based on their city.
+   * Calculates total records.
+   * Calculates unique customers.
+   * Calculates total orders.
+   * Counts customers by city.
 
-```python
-filter_customers(customers, filter_criterion)
-```
+7. **Exit**
 
-For example:
+   * Safely terminates the application.
 
-```text
-Nairobi
-```
+---
 
-returns only customers located in Nairobi.
-
-### 5. Remove Duplicates
-
-Removes duplicate customer records based on customer name while keeping the first occurrence.
-
-```python
-remove_duplicates(customers)
-```
-
-### 6. Generate Summary
-
-Generates useful information about the customer dataset, including:
-
-* Total number of records
-* Number of unique customers
-* Total orders
-* Number of customers per city
-
-```python
-generate_summary(customers)
-```
-
-## Technologies Used
+## Technologies
 
 * Python 3
 * Core Python
@@ -120,142 +80,249 @@ generate_summary(customers)
 * Loops
 * Conditional statements
 * `sorted()`
-* Lambda functions
-* File handling
-* Basic data processing
+* `lambda`
+* `enumerate()`
+* Command-line input/output
+
+No external Python libraries are required.
+
+---
 
 ## Project Structure
 
 ```text
 customer-data-cleanup-organizer/
 │
-├── customer_data.py
-├── main.py
-├── README.md
-└── tests/
-    └── test_customer_data.py
+├── customer_data_cleanup_system.py
+└── README.md
 ```
 
-> The exact file structure may change as the project develops.
+---
 
-## Learning Objectives
+## Sample Customer Data
 
-This project demonstrates practical understanding of:
+The application works with customer records stored as a list of dictionaries:
 
-1. Working with lists of dictionaries
-2. Accessing dictionary values
-3. Iterating through collections
-4. Using sets to identify duplicates
-5. Searching data
-6. Sorting structured data
-7. Filtering data
-8. Designing reusable functions
-9. Returning values from functions
-10. Separating data processing from display logic
-11. Testing normal and boundary cases
-12. Writing documentation for a software project
+```python
+customers = [
+    {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
+    {"name": "Mary Wanjiku", "city": "Meru", "orders": 8},
+    {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
+    {"name": "Peter Kariuki", "city": "Nairobi", "orders": 3},
+    {"name": "Mary Wanjiku", "city": "Meru", "orders": 8}
+]
+```
 
-## Example Results
+This sample intentionally contains duplicate customer records so that the cleanup functionality can be demonstrated.
 
-### Search
+---
 
-Searching for:
+## How to Run
+
+Clone or download the project and navigate to the project directory.
+
+Run:
+
+```bash
+python customer_data_cleanup_system.py
+```
+
+The application will display the main menu:
 
 ```text
-Mary Wanjiku
+==================================================
+ GreenMart Customer Data Organizer
+==================================================
+
+Select One Option
+
+1. Display Customer
+2. Search Customer
+3. Sort Customers
+4. Filter Customers
+5. Remove Duplicates
+6. Generate Summary
+7. Exit
 ```
 
-Expected result:
+Select an option by entering the corresponding number.
+
+---
+
+## Example Summary
+
+Using the sample customer data, the summary function produces:
 
 ```text
-{'name': 'Mary Wanjiku', 'city': 'Meru', 'orders': 8}
+========================================
+           CUSTOMER SUMMARY
+========================================
+Total Records: 5
+Unique Customers: 4
+Total Orders: 29
+
+Customers per City:
+Nairobi: 3
+Meru: 2
 ```
 
-### Sort by Orders
+---
 
-Expected order:
+## Python Concepts Demonstrated
+
+This project was developed as a practical application of Core Python concepts.
+
+### Lists
+
+A list is used to store the collection of customer records.
+
+```python
+customers = [
+    {"name": "John Mwangi", "city": "Nairobi", "orders": 5}
+]
+```
+
+### Dictionaries
+
+Each customer is represented by a dictionary containing:
+
+* `name`
+* `city`
+* `orders`
+
+### Sets
+
+A set is used when removing duplicate customer names:
+
+```python
+set_name = set()
+```
+
+The set allows efficient membership checking.
+
+### Functions
+
+The application is divided into reusable functions:
 
 ```text
-Mary Wanjiku - 8 orders
-John Mwangi - 5 orders
-Peter Kariuki - 3 orders
+display_customers()
+display_menu()
+remove_duplicates()
+search_customer()
+sort_customers()
+filter_customers()
+generate_summary()
 ```
 
-### Filter by City
+### Searching
 
-Filtering by:
+The `search_customer()` function iterates through the customer records and returns the matching customer.
 
-```text
-Nairobi
+### Sorting
+
+The `sort_customers()` function uses Python's `sorted()` function and a `lambda` expression to specify the sorting field.
+
+### Filtering
+
+The `filter_customers()` function creates a new list containing customers from the requested city.
+
+### Function Composition
+
+The `generate_summary()` function reuses:
+
+```python
+remove_duplicates(customers)
 ```
 
-returns customers located in Nairobi.
+instead of duplicating the duplicate-removal logic.
+
+### Menu-Driven Programming
+
+A `while` loop controls the application and allows the user to perform multiple operations until selecting **Exit**.
+
+---
 
 ## Testing
 
-The project will be tested using normal, boundary, and invalid/no-match cases.
+The completed application was manually tested using the following scenarios:
 
-Examples include:
-
+* Displaying all customer records
 * Searching for an existing customer
 * Searching for a customer who does not exist
-* Sorting by name
-* Sorting by orders
-* Filtering by an existing city
-* Filtering by a city with no customers
+* Sorting customers by name
+* Sorting customers by number of orders
+* Filtering customers by an existing city
+* Filtering by a city with no matching customers
 * Removing duplicate records
-* Verifying that the original customer list is not unexpectedly modified
+* Generating the customer summary
+* Exiting the application
+* Entering an invalid menu option
 
-Testing results and screenshots will be added as the project progresses.
+All tested functions produced the expected results.
 
-## Current Limitations
+---
 
-This is an intentionally simple Core Python project.
+## Known Limitations
 
-It currently does not include:
+This project intentionally uses simple Core Python structures and therefore has several limitations:
 
-* Database storage
-* REST APIs
-* Pandas or NumPy
-* Web scraping
-* Graphical user interface
-* User authentication
-* Advanced input validation
-* Large-scale data processing
+* Customer data is stored directly in the Python program.
+* Data is not saved to a database.
+* The application does not currently read customer records from CSV files.
+* Input validation is basic.
+* Customer identity for duplicate detection is based on the customer's name.
+* The application is command-line based.
+* No external libraries are used.
 
-These limitations are intentional because the project is designed to demonstrate Python fundamentals and data-collection processing.
+These limitations are intentional because the project focuses on demonstrating Core Python and collection-handling skills.
 
-## Future Improvements
+---
 
-Possible future versions could include:
+## Possible Future Improvements
+
+The application could later be extended to include:
 
 * CSV file import and export
-* Stronger data validation
-* Database storage
+* More robust input validation
+* Persistent data storage
+* Database integration
 * REST API integration
-* Pandas-based data analysis
-* Web interface
-* Automated testing
-* Larger datasets
+* Pandas-based data processing
+* Automated unit testing
+* A graphical or web interface
+* Larger customer datasets
+
+These improvements would be appropriate as the project progresses into more advanced Python, databases, APIs, and data-processing topics.
+
+---
+
+## Learning Objectives
+
+This project was created to demonstrate practical competency in:
+
+* Working with Python collections
+* Designing reusable functions
+* Breaking a problem into smaller components
+* Searching and filtering data
+* Sorting collections
+* Removing duplicate records
+* Calculating summaries
+* Combining multiple functions into a working application
+* Building a menu-driven command-line program
+* Testing and debugging a Python application
+
+---
 
 ## Project Status
 
-**In Development**
+**Completed — Core Python Version**
 
-The project is being developed incrementally, with each function designed, implemented, tested, and documented before moving to the next component.
+The current version successfully implements the required customer data cleanup and organization features using Core Python.
+
+---
 
 ## Author
 
 **Gibson Muthuri**
 
-Python / AI Development Portfolio
-
----
-
-### Portfolio Context
-
-This project is part of a practical Python learning portfolio focused on developing programming competency through realistic, client-oriented problems.
-
-The objective is not only to produce working code, but also to practice:
-
-**Understanding requirements → Designing a solution → Writing modular code → Testing → Documenting → Delivering**
+This project is part of a practical Python learning and portfolio-development journey focused on building real-world applications through project-based learning.
