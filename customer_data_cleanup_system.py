@@ -24,8 +24,15 @@ def sort_customers(customers, sort_criterion):
     if sort_criterion == "name":
         return sorted(customers, key=lambda customer: customer["name"])
     elif sort_criterion == "orders":
-        return sorted(customers, key=lambda customer: customer["orders"], reverse="true")
-    
+        return sorted(customers, key=lambda customer: customer["orders"], reverse=True)
+
+def filter_customers(customers, filter_criterion):
+    filtered_customer = []
+    for customer in customers:
+        if customer["city"] == filter_criterion:
+            filtered_customer.append(customer)
+    return filtered_customer
+
 customers = [
     {"name": "John Mwangi", "city": "Nairobi", "orders": 5},
     {"name": "Mary Wanjiku", "city": "Meru", "orders": 8},
@@ -57,3 +64,7 @@ print("SORTED DATA")
 print(sort_customers(customers, "name"))
 print(f"{ '+' * 50}")
 print(sort_customers(customers, "orders"))
+
+print(f"{ '+' * 50}")
+print("FILTER BY CITY")
+print(filter_customers(customers, "Nairo"))
